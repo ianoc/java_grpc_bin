@@ -19,7 +19,7 @@ rm -rf .git
 
 
 cd $ORIGINAL_PWD
-./bazel run src/main/java/net/ianoc/javagrpcbin:EditorMain -- $TARGET_TMP_DIR/grpc-java/compiler/BUILD
+./bazel run src/main/java/net/ianoc/javagrpcbin:EditorMain -- $TARGET_TMP_DIR/grpc-java/compiler/BUILD.bazel
 
 cd $TARGET_TMP_DIR/grpc-java
 
