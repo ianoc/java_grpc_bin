@@ -28,6 +28,6 @@ def get_plugin_binares():
 
           "//plugin_binaries:osx_plat": "@io_grpc_grpc_java//plugin_binaries:protoc_grpc_java_plugin-macos",
           "//plugin_binaries:linux_plat": "@io_grpc_grpc_java//plugin_binaries:protoc_grpc_java_plugin-linux",
-          "//conditions:default": ":protoc_cc",
+          "//conditions:default": ":grpc_java_plugin_cc",
       }),
   visibility=["//visibility:public"])
