@@ -1,6 +1,4 @@
-exports_files(["protoc-macos", "protoc-linux"])
-load("//:protoc.bzl", "protoc_exec")
-
+exports_files(["protoc_grpc_java_plugin-macos", "protoc_grpc_java_plugin-linux"])
 
 config_setting(
     name = "osx_plat",

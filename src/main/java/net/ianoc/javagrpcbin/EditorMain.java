@@ -16,22 +16,22 @@ class EditorMain {
       List<String> lines = Files.readAllLines(workingPath, StandardCharsets.UTF_8);
 
       int idx = 0;
-      int licencesOffset = -1;
+      int lastLoadStatement = -1;
       Iterator<String> iter = lines.iterator();
-      while(iter.hasNext() && licencesOffset == -1) {
+      while(iter.hasNext() && lastLoadStatement == -1) {
         String line = iter.next();
-        if(line.startsWith("licenses(")) {
-          licencesOffset = idx;
+        if(line.startsWith("load(")) {
+          lastLoadStatement = idx;
         }
         idx += 1;
       }
-      if(licencesOffset == -1) {
-        System.err.println("Unable to find licence line");
+      if(lastLoadStatement == -1) {
+        System.err.println("Unable to find any load statement");
         System.exit(-1);
       }
 
-      lines.add(licencesOffset, "get_proto_binaries()");
-      lines.add(licencesOffset, "load(\":protoc.bzl\", \"get_proto_binaries\")");
+      lines.add(lastLoadStatement+1, "get_plugin_binares()");
+      lines.add(lastLoadStatement+1, "load(\"//plugin_binaries:grpc_plugin.bzl\", \"get_plugin_binares\")");
 
 
       // Rename the cc binary
@@ -41,17 +41,17 @@ class EditorMain {
       iter = lines.iterator();
       while(iter.hasNext() && ccBinaryNameStatement == -1) {
         String line = iter.next();
-        if(line.replace(" ", "").startsWith("name=\"protoc\"")) {
+        if(line.replace(" ", "").startsWith("name=\"grpc_java_plugin\"")) {
           ccBinaryNameStatement = idx;
         }
         idx += 1;
       }
       if(ccBinaryNameStatement == -1) {
-        System.err.println("Unable to find protoc name line");
+        System.err.println("Unable to find grpc_java_plugi name line");
         System.exit(-1);
       }
 
-      lines.set(ccBinaryNameStatement,  lines.get(ccBinaryNameStatement).replace("\"protoc\"", "\"protoc_cc\""));
+      lines.set(ccBinaryNameStatement,  lines.get(ccBinaryNameStatement).replace("\"grpc_java_plugin\"", "\"grpc_java_plugin\""));
 
       Files.write(workingPath, lines, StandardCharsets.UTF_8);
     } catch(Exception e) {

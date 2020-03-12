@@ -1,4 +1,4 @@
-def _protoc_exec_impl(ctx):
+def _grpc_plugin_impl(ctx):
     ctx.actions.run_shell(
             inputs = depset(transitive = [ctx.attr.binary_file.files]),
             outputs = [ctx.outputs.exe],
@@ -7,8 +7,8 @@ def _protoc_exec_impl(ctx):
     runfiles = ctx.runfiles(files = [ctx.outputs.exe])
     return [DefaultInfo(runfiles = runfiles, executable = ctx.outputs.exe)]
 
-protoc_exec = rule(
-    implementation = _protoc_exec_impl,
+grpc_plugins = rule(
+    implementation = _grpc_plugin_impl,
     attrs = {
         "binary_file": attr.label(
             mandatory=True,
@@ -16,18 +16,18 @@ protoc_exec = rule(
         ),
     },
     executable = True,
-    outputs = {"exe": "protoc"}
+    outputs = {"exe": "grpc_java_plugin"}
 )
 
 
 
-def get_proto_binaries():
-  protoc_exec(name = "protoc",
+def get_plugin_binares():
+  grpc_plugins(name = "grpc_java_plugin",
       binary_file = select(
      {
 
-          "//protoc_binaries:osx_plat": "@com_google_protobuf//protoc_binaries:protoc-macos",
-          "//protoc_binaries:linux_plat": "@com_google_protobuf//protoc_binaries:protoc-linux",
+          "//plugin_binaries:osx_plat": "@io_grpc_grpc_java//plugin_binaries:protoc_grpc_java_plugin-macos",
+          "//plugin_binaries:linux_plat": "@io_grpc_grpc_java//plugin_binaries:protoc_grpc_java_plugin-linux",
           "//conditions:default": ":protoc_cc",
       }),
   visibility=["//visibility:public"])

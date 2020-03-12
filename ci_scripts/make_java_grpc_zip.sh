@@ -23,18 +23,15 @@ cd $ORIGINAL_PWD
 
 cd $TARGET_TMP_DIR/grpc-java
 
-cp $ORIGINAL_PWD/injectable_resources/protoc.bzl .
+mkdir plugin_binaries
 
-mkdir protoc_binaries
+cp $ORIGINAL_PWD/injectable_resources/BUILD_CONTENTS_FOR_PLUGIN_BINARIES plugin_binaries/BUILD
+cp $ORIGINAL_PWD/injectable_resources/grpc_plugin.bzl plugin_binaries/
+cp $ORIGINAL_PWD/downloads/protoc_grpc_java_plugin-linux plugin_binaries/protoc_grpc_java_plugin-linux
+chmod +x plugin_binaries/protoc_grpc_java_plugin-linux
 
-cp $ORIGINAL_PWD/injectable_resources/BUILD_CONTENTS_FOR_PROTOC_BINARIES protoc_binaries/BUILD
-
-
-cp $ORIGINAL_PWD/downloads/protoc-linux protoc_binaries/protoc-linux
-chmod +x protoc_binaries/protoc-linux
-
-cp $ORIGINAL_PWD/downloads/protoc-macos protoc_binaries/protoc-macos
-chmod +x protoc_binaries/protoc-macos
+cp $ORIGINAL_PWD/downloads/protoc_grpc_java_plugin-macos plugin_binaries/protoc_grpc_java_plugin-macos
+chmod +x plugin_binaries/protoc_grpc_java_plugin-macos
 
 zip -r $ORIGINAL_PWD/grpc-java.zip *
 

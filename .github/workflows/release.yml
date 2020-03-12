@@ -60,8 +60,8 @@ jobs:
           path: downloads
       - name: show downloads
         run : ls -R downloads
-      # - name: Build ci_scripts/make_java_grpc_zip.sh
-        # run: ./ci_scripts/make_java_grpc_zip.sh
+      - name: Build ci_scripts/make_java_grpc_zip.sh
+        run: ./ci_scripts/make_java_grpc_zip.sh
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
