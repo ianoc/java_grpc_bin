@@ -7,7 +7,7 @@ env:
   PROTOBUF_SHA: d0bfd5221182da1a7cc280f3337b5e41a89539cf
   GRPC_JAVA_SHA: fd7d2e5eb4dd020bb892278c78f7b3ef901232c1
 jobs:
-  protoc-binaries:
+  java-grpc-plugin-binaries:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: true
@@ -34,7 +34,7 @@ jobs:
         run: |
           echo "build --disk_cache ${{ github.workspace }}/.bazel-cache/disk-cache" >> user.bazelrc
           echo "build --repository_cache ${{ github.workspace }}/.bazel-cache/repo-cache" >> user.bazelrc
-      - name: Build protoc
+      - name: Build protoc_grpc_java_plugin
         run: ./ci_scripts/build_grpc_java_plugin.sh protoc_grpc_java_plugin
       - name: Prepare outputs from platform run
         run: ./ci_scripts/prepare_output.sh protoc_grpc_java_plugin ${{ matrix.artifact }} staging-directory
@@ -44,7 +44,7 @@ jobs:
           path: staging-directory
   make_release:
     name: Make release
-    needs: protoc-binaries
+    needs: java-grpc-plugin-binaries
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

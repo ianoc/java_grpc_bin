@@ -30,4 +30,4 @@ git rev-parse HEAD
 
 cp $ORIGINAL_PWD/user.bazelrc .bazelrc
 $ORIGINAL_PWD/bazel build --override_repository=com_google_protobuf=$TARGET_TMP_DIR/protobuf compiler:grpc_java_plugin
-cp bazel-bin/compiler/grpc_java_plugin $ORIGINAL_PWD/protoc
+cp bazel-bin/compiler/grpc_java_plugin $ORIGINAL_PWD/$OUTPUT_NAME
