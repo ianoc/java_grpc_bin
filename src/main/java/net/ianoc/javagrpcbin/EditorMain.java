@@ -1,4 +1,4 @@
-package net.ianoc.protobufbin;
+package net.ianoc.javagrpcbin;
 
 import java.nio.file.Paths;
 import java.nio.file.Path;

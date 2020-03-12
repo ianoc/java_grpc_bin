@@ -11,7 +11,7 @@ load("@rules_java//java:defs.bzl", "java_binary")
 java_binary(
     name = "EditorMain",
     srcs = ["EditorMain.java"],
-    main_class = "net.ianoc.protobufbin.EditorMain",
+    main_class = "net.ianoc.javagrpcbin.EditorMain",
     deps = [
     ],
 )

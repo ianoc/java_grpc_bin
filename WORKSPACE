@@ -1,4 +1,4 @@
-workspace(name = "protobuf_bin")
+workspace(name = "java_grpc_bin")
 
 BAZEL_VERSION = "2.1.1"
 BAZEL_INSTALLER_VERSION_linux_SHA = "d6cea18d59e9c90c7ec417b2645834f968132de16d0022c7439b1e60438eb8c9"
