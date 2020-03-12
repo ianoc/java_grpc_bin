@@ -51,7 +51,7 @@ class EditorMain {
         System.exit(-1);
       }
 
-      lines.set(ccBinaryNameStatement,  lines.get(ccBinaryNameStatement).replace("\"grpc_java_plugin\"", "\"grpc_java_plugin\""));
+      lines.set(ccBinaryNameStatement,  lines.get(ccBinaryNameStatement).replace("\"grpc_java_plugin\"", "\"grpc_java_plugin_cc\""));
 
       Files.write(workingPath, lines, StandardCharsets.UTF_8);
     } catch(Exception e) {
