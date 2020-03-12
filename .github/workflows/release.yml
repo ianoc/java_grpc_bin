@@ -71,4 +71,6 @@ jobs:
           files: |
             downloads/protoc_grpc_java_plugin-macos
             downloads/protoc_grpc_java_plugin-linux
+            grpc-java.zip
+            grpc-java.zip.sha256
         id: "automatic_releases"

@@ -35,6 +35,6 @@ chmod +x plugin_binaries/protoc_grpc_java_plugin-macos
 
 zip -r $ORIGINAL_PWD/grpc-java.zip *
 
-+cd $ORIGINAL_PWD
-+GENERATED_SHA_256=$(shasum -a 256 grpc-java.zip | awk '{print $1}')
-+echo $GENERATED_SHA_256 > grpc-java.zip.sha256
+cd $ORIGINAL_PWD
+GENERATED_SHA_256=$(shasum -a 256 grpc-java.zip | awk '{print $1}')
+echo $GENERATED_SHA_256 > grpc-java.zip.sha256
